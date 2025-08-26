@@ -1,0 +1,56 @@
+.home,.product{
+    background-color:#677AE4 ; 
+  
+   
+}
+.contain{
+    background-color: #F7F8FD;
+}
+.contain .mytitle{
+    color: #4C63D2;
+}
+.contain i{
+    color: #A6A6A6;
+  
+}
+.myform{
+   border-width: 2px;
+  
+   border-radius: 10px;
+}
+.myform:focus{
+     border-color: #4C63D2; 
+  box-shadow: 0 0 10px #99A6E5;
+}
+.home .butt button{
+    background-color: #5364DB;
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: none;
+    color: #fff;
+    font-weight: 400;
+    transition: transform 0.5s;
+}
+.home .butt button:hover{
+    transform: translateY(-10%);
+    box-shadow: 0 5px 8px #A7AEEF;
+}
+.product .delet{
+    background-color: #F59E0B;
+}
+.product .delet:hover{
+    background-color: #97640d;
+}
+.product .upd{
+    background-color: #EF4444;
+}
+.product .upd:hover{
+background-color: #be2f2f;
+}
+.product .container{
+    background-color: #F8F7FD;
+}
+.product a{
+    text-decoration: none;
+    color: #fff;
+}

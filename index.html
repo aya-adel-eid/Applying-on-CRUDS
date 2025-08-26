@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUDS</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <section class="home py-5" id="home">
+        <div class="container">
+            <div class="title  text-white">
+                <h1 class="text-capitalize text-center py-3 ">store management system</h1>
+            </div>
+            <div class="contain mt-5 rounded-4 p-5 w-75 m-auto shadow-lg">
+                <h3 class="mb-4"> <span class="me-2"><i class="fa-solid fa-plus"></i></span> <span class="mytitle">Add a
+                        new product</span></h3>
+                <div class="row">
+                    <div class="col-lg-4   col-md-6">
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control myform" id="ProductName" placeholder="ProductName">
+                            <label for="ProductName">Product Name</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control myform" id="productPrice"
+                                placeholder="productPrice">
+                            <label for="productPrice">Product Price</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control myform" id="ProductCategory"
+                                placeholder="ProductCategory">
+                            <label for="ProductCategory">Product Category</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control myform" id="productQuantity"
+                                placeholder="productQuantity">
+                            <label for="productQuantity">Product Quantity</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+
+                        <div class="form-floating mb-3 ">
+                            <input type="text" class="form-control myform" id="Productdesc" placeholder="Productdesc">
+                            <label for="Productdesc">Product Description</label>
+                        </div>
+                        <div class="form-floating mb-3 ">
+                            <input type="file" class="form-control myform" id="Productimage" placeholder="Productimage">
+                            <label for="Productimage">Product Image</label>
+                        </div>
+                    </div>
+                    <div class="butt text-center mt-3">
+                        <button onclick="addPrpduct()" id="addBttn">Add Product</button>
+                        <button class="btn bg-warning d-none" id="updateBttn" onclick="updateProduct()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="product py-5">
+        <div class="container  p-4 rounded-4">
+            <div class="form-floating mb-3 m-auto  w-50 ">
+                            <input type="search" class="form-control myform" id="SearchInput" placeholder="SearchInput" onkeyup="search()">
+                            <label for="SearchInput">Search..</label>
+                        </div>
+                         <h2 class="text-muted pt-3">Products List</h2>
+            <div class="row pt-3 gy-3" id="DataRow">
+               
+                
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
