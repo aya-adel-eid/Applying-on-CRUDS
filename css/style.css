@@ -35,16 +35,16 @@
     transform: translateY(-10%);
     box-shadow: 0 5px 8px #A7AEEF;
 }
-.product .delet{
-    background-color: #F59E0B;
-}
-.product .delet:hover{
-    background-color: #97640d;
-}
 .product .upd{
-    background-color: #EF4444;
+    background-color: rgb(15, 126, 15);
 }
 .product .upd:hover{
+    background-color: rgb(20, 94, 20);
+}
+.product .delet{
+    background-color: #EF4444;
+}
+.product .delet:hover{
 background-color: #be2f2f;
 }
 .product .container{
