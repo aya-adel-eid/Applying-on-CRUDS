@@ -1,59 +1,69 @@
 var productName = document.getElementById("ProductName");
-var productPrice=document.getElementById("productPrice");
-var productQuantity=document.getElementById("productQuantity");
-var productCategory=document.getElementById("ProductCategory");
-var productDescription=document.getElementById("Productdesc");
-var productImage=document.getElementById("Productimage");
-var dataRows=document.getElementById("DataRow");
-var addButton=document.getElementById("addBttn");
-var updateButton=document.getElementById("updateBttn");
-var searchInput=document.getElementById("SearchInput");
+var productPrice = document.getElementById("productPrice");
+var productQuantity = document.getElementById("productQuantity");
+var productCategory = document.getElementById("ProductCategory");
+var productDescription = document.getElementById("Productdesc");
+var productImage = document.getElementById("Productimage");
+var dataRows = document.getElementById("DataRow");
+var addButton = document.getElementById("addBttn");
+var updateButton = document.getElementById("updateBttn");
+var searchInput = document.getElementById("SearchInput");
+var allInput=document.querySelectorAll(".contain input");
 var currentIndex;
 var productList;
 
-if(JSON.parse(localStorage.getItem("Products"))!==null)
-    { 
-        productList=JSON.parse(localStorage.getItem("Products"));
-       displayProduct(productList)
-    }
-    else{
-        productList=[];
-    }
-function addPrpduct(){
-var product={
-    name:productName.value,
-    price:productPrice.value,
-    description:productDescription.value,
-   category:productCategory.value,
-   quantity:productQuantity.value,
-    image:"imges/"+productImage.files[0]?.name
+if (JSON.parse(localStorage.getItem("Products")) !== null) {
+  productList = JSON.parse(localStorage.getItem("Products"));
+  displayProduct(productList);
+} else {
+  productList = [];
 }
-productList.push(product);
-localStorage.setItem("Products",JSON.stringify(productList))
-console.log(productList);
-displayProduct(productList);
-clear();  
+function addPrpduct() {
+  if (
+    validate(productName) &&
+    validate(productPrice) &&
+    validate(productCategory) &&
+    validate(productDescription) &&
+    validate(productImage)&&
+    validate(productQuantity)
+  ) {
+    var product = {
+      name: productName.value,
+      price: productPrice.value,
+      description: productDescription.value,
+      category: productCategory.value,
+      quantity: productQuantity.value,
+      image: "imges/" + productImage.files[0]?.name,
+    };
+    productList.push(product);
+    localStorage.setItem("Products", JSON.stringify(productList));
+    console.log(productList);
+    displayProduct(productList);
+    clear();
+  }
 }
-function clear(){
-    productName.value="";
-    productPrice.value='';
-    productDescription.value="";
-    productCategory.value="";
-    productQuantity.value="";
-    productImage.value=""
+function clear() {
+  productName.value = "";
+  productPrice.value = "";
+  productDescription.value = "";
+  productCategory.value = "";
+  productQuantity.value = "";
+  productImage.value = "";
+  clearInputs();
 }
-function displayProduct(arr){
-   
-    
-    if(arr.length==0){
-        dataRows.innerHTML=`<h2 class="text-center text-muted">Product List is empty </h2>`
-        
-    }
-    else{
-
-        var container='';
-        for(var i=0;i<arr.length;i++){
-            container+=`
+function clearInputs(){
+  allInput.forEach(function(input){
+   input.classList.remove("is-valid");
+   input.classList.remove("is-invalid")
+  });
+}
+function displayProduct(arr) {
+  if (arr.length == 0) {
+    dataRows.innerHTML = `<h2 class="text-center text-muted">Product List is empty </h2>`;
+  } else {
+    var container = "";
+    for (var i = 0; i < arr.length; i++) {
+      container += `
              <div class="col-lg-3 col-md-6">
                         
                             <div class="card shadow-lg" >
@@ -72,56 +82,82 @@ function displayProduct(arr){
                             
                         </div>
                     </div>
-            `
-        }
-        dataRows.innerHTML=container;
+            `;
     }
-
-
+    dataRows.innerHTML = container;
+  }
 }
-function deleteProduct(index){
-productList.splice(index,1);
-displayProduct(productList);
-localStorage.setItem("Products",JSON.stringify(productList))
+function deleteProduct(index) {
+  productList.splice(index, 1);
+  displayProduct(productList);
+  localStorage.setItem("Products", JSON.stringify(productList));
 }
 function helpUpdate(index) {
-    currentIndex=index;
-    productName.value=productList[currentIndex].name;
-    productPrice.value=productList[currentIndex].price;
-    productCategory.value=productList[currentIndex].category;
-    productQuantity.value=productList[currentIndex].quantity;
-    productDescription.value=productList[currentIndex].description;
-    productImage.src="imges/"+productList[currentIndex].image;
-     productImage.value = "";
-    addButton.classList.add("d-none");
-    addButton.classList.remove("d-block");
-    updateButton.classList.add("d-block");
-    updateButton.classList.remove("d-none")
-    
+  currentIndex = index;
+  productName.value = productList[currentIndex].name;
+  productPrice.value = productList[currentIndex].price;
+  productCategory.value = productList[currentIndex].category;
+  productQuantity.value = productList[currentIndex].quantity;
+  productDescription.value = productList[currentIndex].description;
+  productImage.src = "imges/" + productList[currentIndex].image;
+  productImage.value = "";
+  addButton.classList.add("d-none");
+  addButton.classList.remove("d-block");
+  updateButton.classList.add("d-block");
+  updateButton.classList.remove("d-none");
 }
-function updateProduct(){
-    productList[currentIndex].name=productName.value;
-    productList[currentIndex].price=productPrice.value;
-    productList[currentIndex].description=productDescription.value;
-    productList[currentIndex].quantity=productQuantity.value;
-    productList[currentIndex].image="imges/"+productImage.files[0]?.name;
-    productList[currentIndex].category=productCategory.value;
-    clear();
-    addButton.classList.replace("d-none","d-block");
-    updateButton.classList.replace("d-block","d-none");
-    displayProduct(productList);
-    localStorage.setItem("Products",JSON.stringify(productList))
+function updateProduct() {
+  productList[currentIndex].name = productName.value;
+  productList[currentIndex].price = productPrice.value;
+  productList[currentIndex].description = productDescription.value;
+  productList[currentIndex].quantity = productQuantity.value;
+  productList[currentIndex].image = "imges/" + productImage.files[0]?.name;
+  productList[currentIndex].category = productCategory.value;
+  clear();
+  addButton.classList.replace("d-none", "d-block");
+  updateButton.classList.replace("d-block", "d-none");
+  displayProduct(productList);
+  localStorage.setItem("Products", JSON.stringify(productList));
 }
 
-function search(){
-  var searchValue=searchInput.value;
-   var searchList=[];
-  for(var i=0;i<productList.length;i++){
-    if(productList[i].name.toUpperCase().includes(searchValue.toUpperCase())){
-      console.log(productList[i])
+function search() {
+  var searchValue = searchInput.value;
+  var searchList = [];
+  for (var i = 0; i < productList.length; i++) {
+    if (productList[i].name.toUpperCase().includes(searchValue.toUpperCase())) {
+      console.log(productList[i]);
       searchList.push(productList[i]);
     }
-
   }
-  displayProduct(searchList)
+  displayProduct(searchList);
 }
+function validate(element) {
+  var txt = element.value;
+
+  var regex = {
+    ProductName: /^[A-Z][a-z]{3,50}$/i,
+    productPrice: /^([0-9][0-9]{3}|10000)$/,
+    ProductCategory: /^(Mobile|Tv|Laptop)$/i,
+    productQuantity: /^[0-9][0-9]{0,}$/,
+    Productdesc: /^[A-Z][a-z./s]{20,200}$/i,
+    Productimage: /^.{3,50}\.(jpg|svg|jpeg|png)$/,
+  };
+  if (regex[element.id].test(txt)) {
+    element.classList.add("is-valid");
+    element.classList.remove("is-invalid");
+    return true;
+  } else {
+    if (txt === "") {
+      element.classList.remove("is-invalid");
+    } else {
+      element.classList.remove("is-valid");
+      element.classList.add("is-invalid");
+    }
+    return false;
+  }
+}
+allInput.forEach(function(input){
+  input.addEventListener("input", function(e){
+    validate(e.target);
+  });
+});
